@@ -3,7 +3,7 @@ model: # FPN 50 configuration
   image_width: 640
   image_height: 480
   desp_dim: 12
-  FPN_pretrained: 'YOUR_PATH_FPN50/fpn50.weight'
+  FPN_pretrained: '/data/fpn50.weight'
   load_FPN_pretrained: true
   use_class: true # Add very tiny classification head
   class_dims: [64,64,8]
@@ -25,10 +25,7 @@ sampling: # xxx_n: maximum num of elements in xxx from sampling, but not guarant
   color_jit_range: [0.5, 0.5, 0.5]
   match_frame_near: 10 # +-10 image frame for finding match points
   point_distance_check: 0.002 # unit: meter
-  dual_projection_check: true # A->A2 A2->A, more precise correspondence
-  # Random Background Texture
-  randomize_background: true # Use synthetic background
-  texture_base: 'YOUR_PATH_VOC2012/VOCdevkit/VOC2012'
+  texture_base: '/data/VOCdevkit/VOC2012'
   texture_dirs: ['JPEGImages']
   bk_random_prob: 0.5
   # Multiple patch (matching_class_set_n+non_matching_class_set_n<=len(train_data['object_classes']))
@@ -132,8 +129,8 @@ training_param: # customized by user
   exp_name: 'mcdon'        # Additional weight/progress file header
   # progress_path/[exp_name[epoch].tpdata
   # result_path/[exp_name][epoch].tpdata
-  progress_path: 'YOUR_PATH_CHECKPOINT/progress' # Assign a path for the checkpoint
-  result_path: 'YOUR_PATH_CHECKPOINT/result' # Assign a path for the checkpoint
+  progress_path: '/data/progress' # Assign a path for the checkpoint
+  result_path: '/data/result' # Assign a path for the checkpoint
 
 
   dev: 0               # CUDA Dev ice Number, used when GPU is available
@@ -196,7 +193,7 @@ evaluation:
 
 
 train_data:
-  base_dir: 'YOUR_PATH_DATASET/DataMCD-net'
+  base_dir: '/data/DataMCD-net'
   use_refined_depth: false
   depth_scale: 0.001 # 0.001 From real camera !!
   cam_mat: [[620.869, 0, 305.089], [0, 620.869, 248.527], [0, 0, 1]] # SR300 Cam Mat
@@ -280,7 +277,7 @@ train_data:
 
 test_data:
   scene_type: 'single'
-  base_dir: 'YOUR_PATH_DATASET/DataMCD-net'
+  base_dir: '/data/DataMCD-net'
   use_refined_depth: false
   depth_scale: 0.001 # 0.001 From real camera !!
   cam_mat: [[620.869, 0, 305.089], [0, 620.869, 248.527], [0, 0, 1]] # SR300 Cam Mat

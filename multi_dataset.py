@@ -19,6 +19,11 @@ class MultiDataset(Dataset):
         if self.multi_static:
             self.color_jit = False
             self.randomize_background = False
+        else:
+            self.color_jit = True
+            self.randomize_background = True
+
+        self.dual_projection_check = False
 
         if self.color_jit:
             transform_list.extend([lambda x: Image.fromarray(x),
